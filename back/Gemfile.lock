@@ -108,6 +108,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jb (0.8.2)
     json (2.12.2)
     kamal (2.6.1)
       activesupport (>= 7.0)
@@ -315,6 +316,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  jb
   kamal
   puma (>= 5.0)
   rails (~> 8.0.2)
