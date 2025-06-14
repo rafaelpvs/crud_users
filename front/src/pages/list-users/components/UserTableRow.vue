@@ -2,15 +2,31 @@
   <tr>
     <td class="text-nowrap text-ellipsis">{{ getFullName() }}</td>
     <td>{{ `${getAge()} anos` }}</td>
+    <td>
+      <input
+        style="cursor: pointer"
+        class="form-check-input"
+        type="checkbox"
+        id="checkDefault"
+        @change="changeActiveUser"
+        v-model="user.active"
+      />
+    </td>
     <td>{{ getFormatedDateTime(user.created_at) }}</td>
     <td>{{ getFormatedDateTime(user.updated_at) }}</td>
     <td>
-      <button type="button" class="btn btn-danger btn-sm" @click="removeUser">
-        Remove user
-      </button>
-      <button class="btn btn-info btn-sm" @click="updateUser">
-        Atualizar usuario
-      </button>
+      <a @click="removeUser">
+        <font-awesome-icon
+          icon="trash"
+          style="color: red; cursor: pointer; margin-right: 15px"
+        />
+      </a>
+      <a @click="updateUser">
+        <font-awesome-icon
+          :icon="['fas', 'pen-to-square']"
+          style="color: blue; cursor: pointer"
+        />
+      </a>
     </td>
   </tr>
 </template>
@@ -42,10 +58,13 @@ const getFormatedDateTime = (date?: string | null): string => {
 const emit = defineEmits<{
   (e: "onRemoveUserClick", user: User): Promise<void>;
   (e: "onUpdateUserClick", id: number): void;
+  (e: "onActiveUserChange", id: number, active: boolean): void;
 }>();
 const removeUser = () => emit("onRemoveUserClick", user);
 
 const updateUser = () => emit("onUpdateUserClick", user.id!);
+const changeActiveUser = () =>
+  emit("onActiveUserChange", user.id!, user.active);
 </script>
 <style scoped>
 .text-ellipsis {

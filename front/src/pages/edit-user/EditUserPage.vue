@@ -32,6 +32,15 @@
           required
         />
       </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          v-model="user.active"
+          id="checkDefault"
+        />
+        <label class="form-check-label" for="checkDefault"> Ativo </label>
+      </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
   </div>
@@ -39,12 +48,13 @@
 
 <script setup lang="ts">
 import type User from "@/models/User";
-import UserRepository from "@/repositories/UserRepository";
+import { UserRepository } from "@/repositories/UserRepository";
 import UserService from "@/services/UserService";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 const route = useRoute();
+import toastr from "toastr";
 let userId: number | null = null;
 if (typeof route.params.id === "string") userId = parseInt(route.params.id);
 const userService = new UserService(new UserRepository());
@@ -53,6 +63,7 @@ let user = ref<User>({
   first_name: "",
   last_name: "",
   birth_date: "",
+  active: false,
 });
 
 onMounted(async () => {
@@ -60,6 +71,9 @@ onMounted(async () => {
 });
 const handleSubmit = async () => {
   await userService.update(user.value);
+  toastr.success(`Usuario alterado com sucesso!`, undefined, {
+    positionClass: "toast-bottom-right",
+  });
   router.push("/");
 };
 </script>

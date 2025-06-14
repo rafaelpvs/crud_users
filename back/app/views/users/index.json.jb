@@ -1,3 +1,9 @@
+
 {
-  users: render(@users) || []
+  users: render(@users) || [],
+  pagination: {
+    pages: @pagy.pages,
+    series: @pagy.series,
+    **@pagy.vars
+  }
 }

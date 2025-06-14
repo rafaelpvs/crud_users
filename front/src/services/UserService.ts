@@ -1,5 +1,6 @@
-import type User from "../models/User";
-import type UserRepository from "../repositories/UserRepository";
+import type { UserPagination } from "@/models/UserPagination";
+import type User from "@/models/User";
+import type { PaginationParams, UserRepository } from "@/repositories/UserRepository";
 
 export default class {
   private userRepository: UserRepository;
@@ -7,8 +8,8 @@ export default class {
     this.userRepository = userRepository;
   }
 
-  getAll(): Promise<User[]> {
-    return this.userRepository.getAll();
+  getAll(params: PaginationParams): Promise<UserPagination> {
+    return this.userRepository.getAll(params);
   }
   remove(id: number) {
     return this.userRepository.remove(id);
@@ -23,5 +24,9 @@ export default class {
 
   get(id: number) {
     return this.userRepository.get(id);
+  }
+
+  changeActive(id: number, active: boolean) {
+    return this.userRepository.changeActive(id, active);
   }
 }

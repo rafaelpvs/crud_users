@@ -13,17 +13,11 @@
         </li>
       </ul>
     </nav>
-    <main class="flex-fill p-4">
+    <main class="flex-fill p-5">
       <router-view />
     </main>
   </div>
 </template>
-
-<script setup lang="ts">
-// import bootstrap from "bootstrap";
-
-// const myModal = new bootstrap.Modal(document.getElementById("myModal")!);
-</script>
 
 <style scoped>
 body {

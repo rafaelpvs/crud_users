@@ -20,6 +20,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def change_active
+    @user = User.find(params[:id])
+    if @user.update(active: params[:active])
+      render :show, status: :ok
+    else
+      render json: { errors: @user.errors.full_messages }
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -28,10 +41,10 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :birth_date)
+    params.require(:user).permit(:first_name, :last_name, :birth_date, :active)
   end
 
   def set_users
-    @users = User.all
+    @pagy, @users = pagy((User.all), items: 20)
   end
 end

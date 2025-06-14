@@ -32,6 +32,15 @@
           required
         />
       </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          v-model="user.active"
+          id="checkDefault"
+        />
+        <label class="form-check-label" for="checkDefault"> Ativo </label>
+      </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
   </div>
@@ -39,8 +48,10 @@
 
 <script setup lang="ts">
 import type User from "@/models/User";
-import UserRepository from "@/repositories/UserRepository";
+import { UserRepository } from "@/repositories/UserRepository";
 import UserService from "@/services/UserService";
+import toastr from "toastr";
+
 import { useRouter } from "vue-router";
 const router = useRouter();
 const userService = new UserService(new UserRepository());
@@ -49,10 +60,14 @@ const user: User = {
   first_name: "",
   last_name: "",
   birth_date: "1996-07-22",
+  active: false,
 };
 
 const handleSubmit = async () => {
   await userService.create(user);
+  toastr.success(`Usuario criado com sucesso!`, undefined, {
+    positionClass: "toast-bottom-right",
+  });
   router.push("/");
 };
 </script>

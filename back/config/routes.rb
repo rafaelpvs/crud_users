@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "users#index"
   defaults format: :json do
-    resources :users, only: [ :create, :index, :destroy, :update ]
+    resources :users, only: [ :create, :index, :destroy, :update, :show ] do
+      member do
+        patch :change_active
+      end
+    end
   end
 end
