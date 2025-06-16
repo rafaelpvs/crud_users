@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Seu relatório está pronto!</h1>
+  <p>
+    Olá,<br>
+    Sua exportação foi concluída com sucesso.<br>
+    O relatório está anexado a este e-mail.<br>
+    Caso tenha qualquer dúvida, entre em contato com nosso suporte.
+  </p>
+  <div class="footer">
+    Este é um e-mail automático. Não responda.<br>
+    &copy; <%= Time.current.year %> Rafael Softwares
+  </div>
+</div>
+
+
+<% content_for :style do %>
+  body {
+    background: #f7f7f7;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    background: #fff;
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 32px 24px;
+  }
+  h1 {
+    color: #2a7ae2;
+    font-size: 1.5em;
+    margin-bottom: 16px;
+  }
+  p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+  .footer {
+    margin-top: 32px;
+    font-size: 0.9em;
+    color: #888;
+    text-align: center;
+  }
+<% end %>

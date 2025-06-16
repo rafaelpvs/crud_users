@@ -1,8 +1,17 @@
 <template>
-  <PaginationComands
-    :pagination="paginationMetaData"
-    @on-button-click="goToPage"
-  />
+  <div class="d-flex justify-content-between align-items-center">
+    <PaginationComands
+      :pagination="paginationMetaData"
+      @on-button-click="goToPage"
+    />
+    <button
+      type="button"
+      class="justify-content-start btn btn-primary"
+      @click="exportUsers"
+    >
+      Exportar
+    </button>
+  </div>
   <table class="table table-bordered text-center">
     <thead class="table-dark">
       <tr>
@@ -75,6 +84,8 @@ const paginationMetaData = ref<Pagination>({
   items: 0,
   count: 0,
   pages: 0,
+  next: 0,
+  prev: 0,
   series: [],
 });
 onMounted(async () => {
@@ -119,8 +130,6 @@ watch(
 );
 
 const reload = async (page: number) => {
-  // const page = Number(newPage) || 1;
-
   const pagination = await userService.getAll({
     page: { number: page, size: 20 },
   });
@@ -132,6 +141,12 @@ const reload = async (page: number) => {
 function goToPage(page: number | string) {
   router.push({ query: { ...route.query, page } });
 }
+
+const exportUsers = async () => {
+  const response = await userService.export();
+  console.log(response.data);
+  toastr.success(response.data.message);
+};
 </script>
 
 <style scoped></style>

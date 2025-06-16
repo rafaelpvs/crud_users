@@ -4,6 +4,8 @@
   pagination: {
     pages: @pagy.pages,
     series: @pagy.series,
+    next: @pagy.next,
+    prev: @pagy.prev,
     **@pagy.vars
   }
 }

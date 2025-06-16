@@ -15,5 +15,7 @@ export type Pagination = {
   items: number;
   count: number;
   pages: number;
+  next: number | null;
+  prev: number | null;
   series: (string | number)[];
 };

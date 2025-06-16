@@ -34,4 +34,8 @@ export class UserRepository {
   changeActive(id: number, active: boolean) {
     return axiosInstance.patch(`/users/${id}/change_active`, { active });
   }
+
+  export() {
+    return axiosInstance.get("/users/export");
+  }
 }

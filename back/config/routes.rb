@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root "users#index"
   defaults format: :json do
     resources :users, only: [ :create, :index, :destroy, :update, :show ] do
+      collection do
+        get :export
+      end
       member do
         patch :change_active
       end

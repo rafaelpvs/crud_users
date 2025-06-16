@@ -5,7 +5,7 @@
     <td>
       <input
         style="cursor: pointer"
-        class="form-check-input"
+        class="form-check-input text-success"
         type="checkbox"
         id="checkDefault"
         @change="changeActiveUser"

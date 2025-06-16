@@ -39,6 +39,18 @@ class UsersController < ApplicationController
     render :destroy, status: :no_content
   end
 
+  def export
+    @users = User.first(1)
+    excel_data = render_to_string(
+      handlers: [:axlsx],
+      formats: [:xlsx],
+      template: "users/export",
+      layout: false
+    )
+    UserMailer.export_email(excel_data).deliver_later
+    render json: {message: 'Exportação solicitada com sucesso!'}, status: :ok
+  end
+
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :birth_date, :active)

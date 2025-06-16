@@ -1,9 +1,17 @@
-import { type PropType } from 'vue';
 <template>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a
+          v-if="pagination.prev"
+          class="page-link"
+          style="cursor: pointer; user-select: none"
+          @click="() => onButtonClick(pagination.prev!)"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+        <a v-else class="page-link" style="color: grey">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -22,7 +30,16 @@ import { type PropType } from 'vue';
         <a v-else class="page-link" style="color: grey">...</a>
       </li>
       <li class="page-item">
-        <a class="page-link" aria-label="Next">
+        <a
+          v-if="pagination.next"
+          class="page-link"
+          style="cursor: pointer; user-select: none"
+          @click="() => onButtonClick(pagination.next!)"
+          aria-label="Next"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+        <a v-else class="page-link" style="color: grey">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

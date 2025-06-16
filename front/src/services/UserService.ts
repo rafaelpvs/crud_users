@@ -1,6 +1,9 @@
 import type { UserPagination } from "@/models/UserPagination";
 import type User from "@/models/User";
-import type { PaginationParams, UserRepository } from "@/repositories/UserRepository";
+import type {
+  PaginationParams,
+  UserRepository,
+} from "@/repositories/UserRepository";
 
 export default class {
   private userRepository: UserRepository;
@@ -28,5 +31,9 @@ export default class {
 
   changeActive(id: number, active: boolean) {
     return this.userRepository.changeActive(id, active);
+  }
+
+  export() {
+    return this.userRepository.export();
   }
 }

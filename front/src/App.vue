@@ -8,7 +8,7 @@
         </li>
         <li class="nav-item">
           <router-link to="/users/new" class="nav-link">
-            criar usuário
+            Criar usuário
           </router-link>
         </li>
       </ul>
@@ -39,7 +39,7 @@ body {
   background: #495057;
 }
 .sidebar .nav-link:hover {
-  background: #495057;
+  background: #3b4149;
   color: #fff;
 }
 </style>
