@@ -1,16 +1,22 @@
 import type { UserPagination } from "@/models/UserPagination";
 import type User from "@/models/User";
 import axiosInstance from "@/services/AxiosInstance";
-export type PaginationParams = {
-  page: {
-    number: Number;
-    size: number;
-  };
+export type Params = {
+  page: number;
+  q: Filters | null;
+};
+
+export type Filters = {
+  full_name_cont: string;
+  birth_date_eq: string;
+  created_at_date_eq: string;
+  updated_at_date_eq: string;
+  active_eq: boolean | null;
 };
 export class UserRepository {
-  async getAll(params: PaginationParams): Promise<UserPagination> {
+  async getAll(params: Params): Promise<UserPagination> {
     const response = await axiosInstance.get("/users", {
-      params: { page: params.page.number },
+      params: params,
     });
     return response.data;
   }

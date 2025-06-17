@@ -1,4 +1,5 @@
 <template>
+  <UserFilters class="mb-9" @search="searchFilter" />
   <div class="d-flex justify-content-between align-items-center">
     <PaginationComands
       :pagination="paginationMetaData"
@@ -62,13 +63,14 @@ import { onMounted, reactive, ref, watch } from "vue";
 import UserTableRow from "@/pages/list-users/components/UserTableRow.vue";
 import type User from "@/models/User";
 import UserService from "@/services/UserService";
-import { UserRepository } from "@/repositories/UserRepository";
+import { UserRepository, type Filters } from "@/repositories/UserRepository";
 import { useRoute, useRouter } from "vue-router";
 import { Modal } from "bootstrap";
 import AppModal from "@/global/components/AppModal.vue";
 import toastr from "toastr";
 import type { Pagination } from "@/models/UserPagination";
 import PaginationComands from "@/global/components/PaginationComands.vue";
+import UserFilters from "./components/UserFilters.vue";
 const usersReac: User[] = reactive([]);
 const userService = new UserService(new UserRepository());
 const router = useRouter();
@@ -129,10 +131,12 @@ watch(
   }
 );
 
-const reload = async (page: number) => {
+const reload = async (page: number, filters: Filters | null = null) => {
   const pagination = await userService.getAll({
-    page: { number: page, size: 20 },
+    page: page,
+    q: filters,
   });
+
   usersReac.splice(0, usersReac.length);
   usersReac.push(...pagination.users);
   paginationMetaData.value = pagination.pagination;
@@ -142,9 +146,14 @@ function goToPage(page: number | string) {
   router.push({ query: { ...route.query, page } });
 }
 
+const searchFilter = async (filters: Filters) => {
+  console.log(filters);
+
+  await reload(1, filters);
+};
+
 const exportUsers = async () => {
   const response = await userService.export();
-  console.log(response.data);
   toastr.success(response.data.message);
 };
 </script>

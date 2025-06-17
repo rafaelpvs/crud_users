@@ -1,9 +1,6 @@
 import type { UserPagination } from "@/models/UserPagination";
 import type User from "@/models/User";
-import type {
-  PaginationParams,
-  UserRepository,
-} from "@/repositories/UserRepository";
+import type { Params, UserRepository } from "@/repositories/UserRepository";
 
 export default class {
   private userRepository: UserRepository;
@@ -11,7 +8,7 @@ export default class {
     this.userRepository = userRepository;
   }
 
-  getAll(params: PaginationParams): Promise<UserPagination> {
+  getAll(params: Params): Promise<UserPagination> {
     return this.userRepository.getAll(params);
   }
   remove(id: number) {

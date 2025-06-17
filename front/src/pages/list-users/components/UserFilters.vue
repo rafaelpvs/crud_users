@@ -1,0 +1,79 @@
+<template>
+  <form @submit.prevent="onSubmit">
+    <div class="mb-2">
+      <label for="fullName" class="form-label">Nome completo:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="fullName"
+        v-model="filters.full_name_cont"
+        placeholder="Digite o nome"
+      />
+    </div>
+
+    <div class="mb-2">
+      <label for="birthDate" class="form-label">Data de aniversário:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="birthDate"
+        v-model="filters.birth_date_eq"
+      />
+    </div>
+
+    <div class="mb-2">
+      <label for="createdAt" class="form-label">Data de criação:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="createdAt"
+        v-model="filters.created_at_date_eq"
+      />
+    </div>
+
+    <div class="mb-2">
+      <label for="updatedAt" class="form-label">Data de atualização:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="updatedAt"
+        v-model="filters.updated_at_date_eq"
+      />
+    </div>
+
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        v-model="filters.active_eq"
+        id="checkDefault"
+      />
+      <label class="form-check-label" for="checkDefault"> Ativo </label>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary">Filtrar</button>
+    </div>
+  </form>
+</template>
+
+<script lang="ts" setup>
+import type { Filters } from "@/repositories/UserRepository";
+import { reactive } from "vue";
+
+const filters = reactive<Filters>({
+  full_name_cont: "",
+  birth_date_eq: "",
+  created_at_date_eq: "",
+  updated_at_date_eq: "",
+  active_eq: null,
+});
+
+const emit = defineEmits<{
+  (e: "search", filters: Filters): void;
+}>();
+
+function onSubmit() {
+  emit("search", { ...filters });
+}
+</script>
