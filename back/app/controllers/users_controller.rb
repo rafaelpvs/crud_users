@@ -57,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def set_users
-    @pagy, @users = pagy((User.all), items: 20)
+    @q = User.ransack(params[:q])
+    @pagy, @users = pagy(@q.result, items: 20)
   end
 end

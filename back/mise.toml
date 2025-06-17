@@ -1,2 +1,3 @@
 [tools]
+postgres = "14.18"
 ruby = "3.4.4"
