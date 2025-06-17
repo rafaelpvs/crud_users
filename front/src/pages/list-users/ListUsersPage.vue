@@ -1,5 +1,5 @@
 <template>
-  <UserFilters class="mb-9" @search="searchFilter" />
+  <UserFilters class="mb-5" @search="searchFilter" />
   <div class="d-flex justify-content-between align-items-center">
     <PaginationComands
       :pagination="paginationMetaData"
