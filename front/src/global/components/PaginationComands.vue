@@ -21,10 +21,10 @@
         :class="{ 'page-item': true, active: pagination.page == page }"
       >
         <a
-          v-if="page !== 'gap'"
+          v-if="page !== 'gap' && page !== pagination.page"
           class="page-link"
           style="cursor: pointer; user-select: none"
-          @click="() => onButtonClick(page)"
+          @click="() => onButtonClick(page as number)"
           >{{ page }}</a
         >
         <a v-else class="page-link" style="color: grey">...</a>
@@ -59,10 +59,10 @@ defineProps({
 });
 
 const emit = defineEmits<{
-  (e: "onButtonClick", page: string | number): Promise<void>;
+  (e: "onButtonClick", page: number): Promise<void>;
 }>();
 
-const onButtonClick = (page: string | number) => {
+const onButtonClick = (page: number) => {
   emit("onButtonClick", page);
 };
 </script>

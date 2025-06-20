@@ -59,21 +59,27 @@
 
 <script lang="ts" setup>
 import type { Filters } from "@/repositories/UserRepository";
-import { reactive } from "vue";
-
-const filters = reactive<Filters>({
-  full_name_cont: "",
-  birth_date_eq: "",
-  created_at_date_eq: "",
-  updated_at_date_eq: "",
-  active_eq: null,
+import { reactive, watch, type PropType } from "vue";
+const props = defineProps({
+  filtersProp: {
+    required: true,
+    type: Object as PropType<Filters>,
+  },
 });
-
+const filters = reactive<Filters>(props.filtersProp);
+watch(
+  () => props.filtersProp,
+  (newFilters) => {
+    emit("onUpdateFilters", newFilters);
+  },
+  { deep: true }
+);
 const emit = defineEmits<{
-  (e: "search", filters: Filters): void;
+  (e: "search"): Promise<void>;
+  (e: "onUpdateFilters", filters: Filters): void;
 }>();
 
-function onSubmit() {
-  emit("search", { ...filters });
+async function onSubmit() {
+  await emit("search");
 }
 </script>
