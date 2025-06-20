@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def export
-    @users = User.first(1)
+    @users = User.ransack(params[:q]).result
     excel_data = render_to_string(
       handlers: [:axlsx],
       formats: [:xlsx],

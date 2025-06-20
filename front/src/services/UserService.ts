@@ -1,6 +1,10 @@
 import type { UserPagination } from "@/models/UserPagination";
 import type User from "@/models/User";
-import type { Params, UserRepository } from "@/repositories/UserRepository";
+import type {
+  Filters,
+  Params,
+  UserRepository,
+} from "@/repositories/UserRepository";
 
 export default class {
   private userRepository: UserRepository;
@@ -30,7 +34,7 @@ export default class {
     return this.userRepository.changeActive(id, active);
   }
 
-  export() {
-    return this.userRepository.export();
+  export(filters: Filters) {
+    return this.userRepository.export(filters);
   }
 }

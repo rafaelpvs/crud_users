@@ -18,4 +18,8 @@ class User < ApplicationRecord
   ransacker :updated_at_date, type: :date do |parent|
     Arel::Nodes::SqlLiteral.new("DATE(#{parent.table.name}.updated_at)")
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -194,7 +194,7 @@ const searchFilter = async () => {
 };
 
 const exportUsers = async () => {
-  const response = await userService.export();
+  const response = await userService.export(filters);
   toastr.success(response.data.message);
 };
 

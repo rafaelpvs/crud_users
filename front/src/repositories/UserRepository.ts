@@ -41,7 +41,7 @@ export class UserRepository {
     return axiosInstance.patch(`/users/${id}/change_active`, { active });
   }
 
-  export() {
-    return axiosInstance.get("/users/export");
+  export(filters: Filters) {
+    return axiosInstance.get("/users/export", { params: { q: filters } });
   }
 }
