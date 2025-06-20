@@ -10,7 +10,8 @@ import router from "./router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
+import "flatpickr/dist/flatpickr.css";
+import "flatpickr/dist/themes/material_blue.css";
 library.add(faTrash, faPenToSquare);
 
 const app = createApp(App);

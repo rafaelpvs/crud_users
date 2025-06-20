@@ -13,30 +13,27 @@
 
     <div class="mb-2">
       <label for="birthDate" class="form-label">Data de aniversário:</label>
-      <input
-        type="date"
-        class="form-control"
-        id="birthDate"
+      <InputDate
+        placeholder="Digite a data de aniversário..."
+        input-id="birthDate"
         v-model="filters.birth_date_eq"
       />
     </div>
 
     <div class="mb-2">
       <label for="createdAt" class="form-label">Data de criação:</label>
-      <input
-        type="date"
-        class="form-control"
-        id="createdAt"
+      <InputDate
+        placeholder="Digite a data de cadastro..."
+        input-id="createdAt"
         v-model="filters.created_at_date_eq"
       />
     </div>
 
     <div class="mb-2">
       <label for="updatedAt" class="form-label">Data de atualização:</label>
-      <input
-        type="date"
-        class="form-control"
-        id="updatedAt"
+      <InputDate
+        placeholder="Digite a data de atualização..."
+        input-id="updatedAt"
         v-model="filters.updated_at_date_eq"
       />
     </div>
@@ -59,13 +56,17 @@
 
 <script lang="ts" setup>
 import type { Filters } from "@/repositories/UserRepository";
+
 import { reactive, watch, type PropType } from "vue";
+import InputDate from "../../../global/components/InputDate.vue";
+
 const props = defineProps({
   filtersProp: {
     required: true,
     type: Object as PropType<Filters>,
   },
 });
+
 const filters = reactive<Filters>(props.filtersProp);
 watch(
   () => props.filtersProp,
