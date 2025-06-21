@@ -11,7 +11,9 @@
         :pagination="paginationMetaData"
         @on-button-click="goToPage"
       />
-      <span class="badge bg-primary ms-5">{{ paginationMetaData.count }} users</span>
+      <span class="badge bg-primary ms-5"
+        >{{ paginationMetaData.count }} users</span
+      >
     </div>
     <button
       type="button"
@@ -129,12 +131,16 @@ const parseFiltersFromRouteQuery = (): Filters => {
     updated_at_date_eq,
     active_eq,
   } = route.query;
+  let active_eq_value: boolean | null = null;
+  if (active_eq === "true") active_eq_value = true;
+  if (active_eq === "false") active_eq_value = false;
+  if (active_eq === undefined) active_eq_value = null;
   return {
     full_name_cont: full_name_cont as string,
     birth_date_eq: birth_date_eq as string,
     created_at_date_eq: created_at_date_eq as string,
     updated_at_date_eq: updated_at_date_eq as string,
-    active_eq: active_eq === "false" ? false : true,
+    active_eq: active_eq_value,
   };
 };
 let selectedUser = ref<User | null>(null);
