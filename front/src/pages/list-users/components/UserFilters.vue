@@ -22,9 +22,6 @@
           v-model="filters.birth_date_eq"
         />
       </div>
-    </div>
-
-    <div class="row">
       <div class="mb-2 col-md-2">
         <label for="createdAt" class="form-label">Data de criação:</label>
         <InputDate
@@ -33,9 +30,6 @@
           v-model="filters.created_at_date_eq"
         />
       </div>
-    </div>
-
-    <div class="row">
       <div class="mb-2 col-md-2">
         <label for="updatedAt" class="form-label">Data de atualização:</label>
         <InputDate
