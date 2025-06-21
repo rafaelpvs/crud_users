@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
       mime_type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       content: excel_data
     }
-    mail(to: 'rafael12wq@gmail.com', subject: 'Exportação')
+    mail(to: "rafael12wq@gmail.com", subject: "Exportação")
   end
 end

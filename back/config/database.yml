@@ -13,8 +13,13 @@ default: &default
   host: <%= ENV.fetch("DATABASE_HOST")%>
 
 development:
-  <<: *default
-  database: crud_users_development
+  primary:
+    <<: *default
+    database: crud_users_development
+  queue:
+    <<: *default
+    database: crud_users_development
+    migrations_paths: db/queue_migrate
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

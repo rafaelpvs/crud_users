@@ -36,12 +36,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV['SMTP_ADDRESS'],
-    port:                 ENV['SMTP_PORT'],
-    user_name:            ENV['SMTP_USER'],
-    password:             ENV['SMTP_PASS'],
-    authentication:       ENV['SMTP_AUTH'],
-    enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] == 'true'
+    address:              ENV["SMTP_ADDRESS"],
+    port:                 ENV["SMTP_PORT"],
+    user_name:            ENV["SMTP_USER"],
+    password:             ENV["SMTP_PASS"],
+    authentication:       ENV["SMTP_AUTH"],
+    enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"] == "true"
   }
 
   # Set localhost to be used by links generated in mailer templates.
@@ -61,7 +61,8 @@ Rails.application.configure do
 
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
-
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
