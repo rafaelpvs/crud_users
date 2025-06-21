@@ -6,13 +6,16 @@
     @on-update-filters="updateFilters"
   />
   <div class="d-flex justify-content-between align-items-center">
-    <PaginationComands
-      :pagination="paginationMetaData"
-      @on-button-click="goToPage"
-    />
+    <div class="d-flex justify-content-start align-items-center">
+      <PaginationComands
+        :pagination="paginationMetaData"
+        @on-button-click="goToPage"
+      />
+      <span class="badge bg-primary ms-5">{{ paginationMetaData.count }} users</span>
+    </div>
     <button
       type="button"
-      class="justify-content-start btn btn-primary"
+      class="justify-content-start btn btn-primary btn-sm"
       @click="exportUsers"
     >
       Exportar

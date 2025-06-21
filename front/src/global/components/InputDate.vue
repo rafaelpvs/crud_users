@@ -3,9 +3,9 @@
     type="text"
     ref="input-date"
     :id="props.inputId"
-    class="form-control"
+    class="form-control form-control-sm"
     v-model="dateString"
-    placeholder="placeholder"
+    :placeholder="placeholder"
   />
 </template>
 
