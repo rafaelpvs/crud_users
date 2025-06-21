@@ -298,13 +298,6 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.7.tgz"
   integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
 
-"@types/flatpickr@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@types/flatpickr/-/flatpickr-3.1.4.tgz#f4d87faa0d37e5faaa9fe1a663b6367317916d5d"
-  integrity sha512-czk8lydTB2qzWBqI6gproY594pg+iEfpHQyrvnyMnMKxvD+2qbrs1g2F8KiWZK173jQMw2C7O9lFjiKeBNub+A==
-  dependencies:
-    flatpickr "*"
-
 "@types/jquery@*":
   version "3.5.32"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.32.tgz#3eb0da20611b92c7c49ebed6163b52a4fdc57def"
@@ -617,7 +610,7 @@ fdir@^6.4.4:
   resolved "https://registry.npmjs.org/fdir/-/fdir-6.4.5.tgz"
   integrity sha512-4BG7puHpVsIYxZUbiUE3RqGloLaSSwzYie5jvasC4LWuBWzZawynvYouhjbQKw2JuIGYdm0DzIxl8iVidKlUEw==
 
-flatpickr@*, flatpickr@^4.6.13:
+flatpickr@^4.6.13:
   version "4.6.13"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
   integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
