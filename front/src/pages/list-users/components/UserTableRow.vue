@@ -53,7 +53,7 @@ const getAge = (): number => {
 };
 
 const getFormatedDateTime = (date?: string | null): string => {
-  return moment(date).utc().format("DD/MM/YYYY HH:mm:ss");
+  return moment(date).local().format("DD/MM/YYYY HH:mm:ss");
 };
 const emit = defineEmits<{
   (e: "onRemoveUserClick", user: User): Promise<void>;
