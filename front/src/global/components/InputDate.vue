@@ -1,12 +1,21 @@
 <template>
-  <input
-    type="text"
-    ref="input-date"
-    :id="props.inputId"
-    class="form-control form-control-sm"
-    v-model="dateString"
-    :placeholder="placeholder"
-  />
+  <div class="d-flex align-items-center">
+    <input
+      type="text"
+      ref="input-date"
+      :id="props.inputId"
+      class="form-control form-control-sm"
+      v-model="dateString"
+      :placeholder="placeholder"
+    />
+    <span @click="clearDate" class="ms-2">
+      <font-awesome-icon
+        :icon="['fas', 'xmark']"
+        size="sm"
+        style="color: red; cursor: pointer; margin-right: 15px"
+      />
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,7 +51,9 @@ onMounted(() => {
     },
   });
 });
-
+const clearDate = () => {
+  flatpickrInstance?.clear();
+};
 onUnmounted(() => {
   flatpickrInstance!.destroy();
   flatpickrInstance = null;
