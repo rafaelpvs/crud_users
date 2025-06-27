@@ -18,7 +18,7 @@ development:
     database: crud_users_development
   queue:
     <<: *default
-    database: crud_users_development
+    database: crud_users_queue_development
     migrations_paths: db/queue_migrate
 
 # Warning: The database defined as "test" will be erased and
