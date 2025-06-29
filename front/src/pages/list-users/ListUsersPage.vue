@@ -127,8 +127,10 @@ const parseFiltersFromRouteQuery = (): Filters => {
   const {
     full_name_cont,
     birth_date_eq,
-    created_at_date_eq,
-    updated_at_date_eq,
+    created_at_gteq,
+    created_at_lteq,
+    updated_at_gteq,
+    updated_at_lteq,
     active_eq,
   } = route.query;
   let active_eq_value: boolean | null = null;
@@ -138,8 +140,10 @@ const parseFiltersFromRouteQuery = (): Filters => {
   return {
     full_name_cont: full_name_cont as string,
     birth_date_eq: birth_date_eq as string,
-    created_at_date_eq: created_at_date_eq as string,
-    updated_at_date_eq: updated_at_date_eq as string,
+    created_at_gteq: created_at_gteq as string,
+    created_at_lteq: created_at_lteq as string,
+    updated_at_gteq: updated_at_gteq as string,
+    updated_at_lteq: updated_at_lteq as string,
     active_eq: active_eq_value,
   };
 };
@@ -216,8 +220,10 @@ const parseQueryParams = (page: number): LocationQueryRaw => {
     page,
     full_name_cont: filters.full_name_cont,
     birth_date_eq: filters.birth_date_eq,
-    created_at_date_eq: filters.created_at_date_eq,
-    updated_at_date_eq: filters.updated_at_date_eq,
+    created_at_gteq: filters.created_at_gteq,
+    created_at_lteq: filters.created_at_lteq,
+    updated_at_gteq: filters.updated_at_gteq,
+    updated_at_lteq: filters.updated_at_lteq,
     active_eq: filters.active_eq?.toString(),
   };
 };

@@ -9,8 +9,10 @@ export type Params = {
 export type Filters = {
   full_name_cont: string;
   birth_date_eq: string;
-  created_at_date_eq: string;
-  updated_at_date_eq: string;
+  created_at_gteq: string;
+  created_at_lteq: string;
+  updated_at_gteq: string;
+  updated_at_lteq: string;
   active_eq: boolean | null;
 };
 export class UserRepository {

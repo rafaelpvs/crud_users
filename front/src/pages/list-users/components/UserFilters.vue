@@ -25,17 +25,35 @@
       <div class="mb-2 col-md-2">
         <label for="createdAt" class="form-label">Data de criação:</label>
         <InputDate
-          placeholder="Digite a data de cadastro..."
-          input-id="createdAt"
-          v-model="filters.created_at_date_eq"
+          placeholder="De"
+          input-id="createdAtFrom"
+          value-format="YYYY-MM-DDTHH:mm:ssZ"
+          v-model="filters.created_at_gteq"
+        />
+        <InputDate
+          placeholder="Até"
+          input-id="createdAtUntil"
+          value-format="YYYY-MM-DDTHH:mm:ssZ"
+          class="mt-2"
+          force-time-type="end_of_day"
+          v-model="filters.created_at_lteq"
         />
       </div>
       <div class="mb-2 col-md-2">
         <label for="updatedAt" class="form-label">Data de atualização:</label>
         <InputDate
-          placeholder="Digite a data de atualização..."
-          input-id="updatedAt"
-          v-model="filters.updated_at_date_eq"
+          placeholder="De"
+          input-id="updatedAtFrom"
+          value-format="YYYY-MM-DDTHH:mm:ssZ"
+          v-model="filters.updated_at_gteq"
+        />
+        <InputDate
+          placeholder="Até"
+          input-id="updatedAtUntil"
+          value-format="YYYY-MM-DDTHH:mm:ssZ"
+          force-time-type="end_of_day"
+          class="mt-2"
+          v-model="filters.updated_at_lteq"
         />
       </div>
     </div>

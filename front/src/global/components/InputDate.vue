@@ -22,7 +22,7 @@
 import flatpickr from "flatpickr";
 import type { Instance } from "flatpickr/dist/types/instance";
 import moment from "moment";
-import { onMounted, onUnmounted, useTemplateRef } from "vue";
+import { onMounted, onUnmounted, useTemplateRef, type PropType } from "vue";
 
 const props = defineProps({
   inputId: {
@@ -33,7 +33,17 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  valueFormat: {
+    type: String,
+    required: false,
+    default: "YYYY-MM-DD",
+  },
+  forceTimeType: {
+    type: String as PropType<ForceTimeType>,
+    required: false,
+  },
 });
+type ForceTimeType = "end_of_day" | "start_of_day";
 const model = defineModel({
   type: String,
 });
@@ -46,13 +56,19 @@ onMounted(() => {
     dateFormat: "d/m/Y",
     onChange: (dates) => {
       const [date] = dates;
-      const momentDate = moment(date);
-      model.value = momentDate.format("YYYY-MM-DD");
+      let momentDate = null;
+      if (props.forceTimeType === "end_of_day") {
+        momentDate = moment(date).endOf("day");
+      } else {
+        momentDate = moment(date);
+      }
+      model.value = momentDate.format(props.valueFormat);
     },
   });
 });
 const clearDate = () => {
   flatpickrInstance?.clear();
+  model.value = "";
 };
 onUnmounted(() => {
   flatpickrInstance!.destroy();
