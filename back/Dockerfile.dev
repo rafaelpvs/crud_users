@@ -1,0 +1,22 @@
+FROM ruby:3.4.4
+
+# Instala cliente PostgreSQL apenas (sem Node.js ou Yarn)
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
+
+# Define diretório da aplicação
+WORKDIR /rails
+
+# Copia e instala gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copia o restante do código da app
+COPY . .
+
+# Expõe a porta do Rails (conforme seu docker-compose)
+EXPOSE 80
+
+# Usado para preparar banco antes de subir o servidor
+ENTRYPOINT ["./entrypoint.sh"]

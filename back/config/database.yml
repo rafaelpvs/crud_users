@@ -1,9 +1,4 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
+
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -15,10 +10,10 @@ default: &default
 development:
   primary:
     <<: *default
-    database: crud_users_development
+    database: <%= ENV.fetch("PRIMARY_DATABASE_NAME")%>
   queue:
     <<: *default
-    database: crud_users_queue_development
+    database: <%= ENV["QUEUE_DATABASE_NAME"] %>
     migrations_paths: db/queue_migrate
 
 # Warning: The database defined as "test" will be erased and

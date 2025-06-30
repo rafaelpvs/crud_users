@@ -47,7 +47,10 @@ type ForceTimeType = "end_of_day" | "start_of_day";
 const model = defineModel({
   type: String,
 });
-const dateString: string = model.value!;
+let dateString: string;
+if (model.value) {
+  dateString = moment(model.value).format("DD/MM/YYYY");
+}
 
 const inputElement = useTemplateRef("input-date");
 let flatpickrInstance: Instance | null = null;
