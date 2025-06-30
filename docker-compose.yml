@@ -13,11 +13,11 @@ services:
     build:
       context: ./back
       dockerfile: Dockerfile.dev
-    command: rails server -b 0.0.0.0 -p 80
+    command: rails server -b 0.0.0.0
     volumes:
       - ./back:/rails
     ports:
-      - "3000:80"
+      - "${BACK_PORT:-3000}:3000"
     depends_on:
       - crud_users_db
     environment:
@@ -28,9 +28,23 @@ services:
       SMTP_PASS: ${SMTP_PASS}
       SMTP_AUTH: ${SMTP_AUTH}
       SMTP_ENABLE_STARTTLS_AUTO: ${SMTP_ENABLE_STARTTLS_AUTO}
-
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_HOST: ${DATABASE_HOST}
       PRIMARY_DATABASE_NAME: ${PRIMARY_DATABASE_NAME}
       QUEUE_DATABASE_NAME: ${QUEUE_DATABASE_NAME}
+  crud_users_front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    command: npm run dev -- --host
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    ports:
+      - "${FRONT_PORT:-5173}:5173"
+    depends_on:
+      - crud_users_api
+    environment:
+      NODE_ENV: development
+      VITE_FRONT_API_BASE_URL: "http://localhost:${BACK_PORT:-3000}"
