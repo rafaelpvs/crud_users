@@ -24,36 +24,20 @@
       </div>
       <div class="mb-2 col-md-2">
         <label for="createdAt" class="form-label">Data de criação:</label>
-        <InputDate
-          placeholder="De"
-          input-id="createdAtFrom"
-          value-format="YYYY-MM-DDTHH:mm:ssZ"
-          v-model="filters.created_at_gteq"
-        />
-        <InputDate
-          placeholder="Até"
-          input-id="createdAtUntil"
-          value-format="YYYY-MM-DDTHH:mm:ssZ"
-          class="mt-2"
-          force-time-type="end_of_day"
-          v-model="filters.created_at_lteq"
+        <InputDateRange
+          input-id="created_at"
+          placeholder="00/00/000 to 00/00/0000"
+          v-model:fromDate="filters.created_at_gteq"
+          v-model:toDate="filters.created_at_lteq"
         />
       </div>
       <div class="mb-2 col-md-2">
         <label for="updatedAt" class="form-label">Data de atualização:</label>
-        <InputDate
-          placeholder="De"
-          input-id="updatedAtFrom"
-          value-format="YYYY-MM-DDTHH:mm:ssZ"
-          v-model="filters.updated_at_gteq"
-        />
-        <InputDate
-          placeholder="Até"
-          input-id="updatedAtUntil"
-          value-format="YYYY-MM-DDTHH:mm:ssZ"
-          force-time-type="end_of_day"
-          class="mt-2"
-          v-model="filters.updated_at_lteq"
+        <InputDateRange
+          input-id="updated_at"
+          placeholder="00/00/000 to 00/00/0000"
+          v-model:fromDate="filters.updated_at_gteq"
+          v-model:toDate="filters.updated_at_lteq"
         />
       </div>
     </div>
@@ -74,6 +58,7 @@ import type { Filters } from "@/repositories/UserRepository";
 import { computed, reactive, watch, type PropType } from "vue";
 import InputDate from "../../../global/components/InputDate.vue";
 import MultipleRadioButton from "@/global/components/MultipleRadioButton.vue";
+import InputDateRange from "@/global/components/InputDateRange.vue";
 
 const props = defineProps({
   filtersProp: {
