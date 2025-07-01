@@ -91,7 +91,6 @@ docker-compose build --no-cache
 
 ## 📝 Observações
 
-- Use o volume nomeado `node_modules` para evitar conflitos entre dependências do host e do container.
 - O Postgres usa volume local para persistência dos dados.
 
 ---
