@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.6",
     "flatpickr": "^4.6.13",
     "moment-timezone": "^0.6.0",
+    "pinia": "^3.0.3",
     "toastr": "^2.1.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"

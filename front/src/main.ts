@@ -16,10 +16,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "flatpickr/dist/flatpickr.css";
 import "flatpickr/dist/themes/material_blue.css";
+import { createPinia } from "pinia";
 library.add(faTrash, faPenToSquare, faXmark);
 
 const app = createApp(App);
+const pinia = createPinia();
 app.use(router);
+app.use(pinia);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");
